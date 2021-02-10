@@ -41,18 +41,27 @@ public class GitflowInitOptionsDialog extends DialogWrapper {
         setLocalBranchesComboBox(false);
 
         init();
+
         useNonDefaultConfigurationCheckBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 enableFields(e.getStateChange()==ItemEvent.SELECTED);
             }
         });
+
+        useNonDefaultConfigurationCheckBox.setSelected(true);
     }
 
     private void setLocalBranchesComboBox(boolean isNonDefault){
         if (isNonDefault){
             developmentBranchComboBox.setModel(new CollectionComboBoxModel(localBranches));
             productionBranchComboBox.setModel(new CollectionComboBoxModel(localBranches));
+            if (localBranches.contains("main")) {
+                developmentBranchComboBox.setSelectedItem("main");
+            }
+            if (localBranches.contains("production")) {
+                productionBranchComboBox.setSelectedItem("production");
+            }
         } else {
             developmentBranchComboBox.setModel(new CollectionComboBoxModel(Arrays.asList("main")));
             productionBranchComboBox.setModel(new CollectionComboBoxModel(Arrays.asList("production")));
