@@ -54,8 +54,8 @@ public class GitflowInitOptionsDialog extends DialogWrapper {
             developmentBranchComboBox.setModel(new CollectionComboBoxModel(localBranches));
             productionBranchComboBox.setModel(new CollectionComboBoxModel(localBranches));
         } else {
-            developmentBranchComboBox.setModel(new CollectionComboBoxModel(Arrays.asList("develop")));
-            productionBranchComboBox.setModel(new CollectionComboBoxModel(Arrays.asList("master")));
+            developmentBranchComboBox.setModel(new CollectionComboBoxModel(Arrays.asList("main")));
+            productionBranchComboBox.setModel(new CollectionComboBoxModel(Arrays.asList("production")));
         }
     }
 

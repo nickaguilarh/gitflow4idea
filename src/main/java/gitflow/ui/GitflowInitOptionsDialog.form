@@ -3,7 +3,7 @@
   <grid id="cbd77" binding="contentPane" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="48" y="54" width="484" height="341"/>
+      <xy x="48" y="54" width="484" height="369"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -123,7 +123,7 @@
             </constraints>
             <properties>
               <enabled value="false"/>
-              <text value="feature/"/>
+              <text value="ID-"/>
             </properties>
           </component>
           <component id="c2ead" class="javax.swing.JTextField" binding="releasePrefixTextField" default-binding="true">
@@ -134,7 +134,7 @@
             </constraints>
             <properties>
               <enabled value="false"/>
-              <text value="release/"/>
+              <text value="RC-"/>
             </properties>
           </component>
           <component id="57814" class="javax.swing.JTextField" binding="hotfixPrefixTextField" default-binding="true">
@@ -145,7 +145,7 @@
             </constraints>
             <properties>
               <enabled value="false"/>
-              <text value="hotfix/"/>
+              <text value="HF-"/>
             </properties>
           </component>
           <component id="e58aa" class="javax.swing.JTextField" binding="supportPrefixTextField" default-binding="true">
@@ -156,7 +156,7 @@
             </constraints>
             <properties>
               <enabled value="false"/>
-              <text value="support/"/>
+              <text value="SP-"/>
             </properties>
           </component>
           <component id="3ade3" class="javax.swing.JTextField" binding="versionPrefixTextField">
@@ -185,7 +185,7 @@
             </constraints>
             <properties>
               <enabled value="false"/>
-              <text value="bugfix/"/>
+              <text value="BF-"/>
             </properties>
           </component>
         </children>
