@@ -6,8 +6,10 @@ import com.intellij.openapi.vcs.VcsTaskHandler;
 import com.intellij.tasks.LocalTask;
 import com.intellij.tasks.Task;
 import com.intellij.tasks.TaskManager;
+import com.intellij.tasks.TaskRepository;
 import com.intellij.tasks.impl.TaskManagerImpl;
 import com.intellij.tasks.ui.TaskDialogPanel;
+import com.intellij.tasks.youtrack.YouTrackRepository;
 import git4idea.branch.GitBranchUtil;
 import git4idea.repo.GitRepository;
 import gitflow.GitflowBranchUtil;
@@ -19,11 +21,15 @@ import gitflow.actions.StartBugfixAction;
 import gitflow.actions.StartFeatureAction;
 import gitflow.actions.StartHotfixAction;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Collections;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static com.intellij.openapi.vcs.VcsTaskHandler.TaskInfo;
 
@@ -85,9 +91,24 @@ public class GitflowOpenTaskPanel extends TaskDialogPanel implements ItemListene
                                             ? myVcsTaskHandler.cleanUpBranchName(myTaskManager.constructDefaultBranchName(task))
                                             : myTaskManager.suggestBranchName(task);
 
+        @Nullable TaskRepository taskRepository = task.getRepository();
+
+        if (taskRepository != null &&  taskRepository.getClass().toString().equals(YouTrackRepository.class.toString())) {
+            branchName = task.getNumber();
+        }
+
+        String loggerName = "com.something";
+        Logger log = Logger.getLogger(loggerName);
+        ConsoleHandler handler = new ConsoleHandler();
+        handler.setLevel(Level.ALL);
+        log.addHandler(handler);
+        log.setLevel(Level.ALL);
+        log.fine(branchName);
+
+
         featureName.setText(branchName);
-        featureName.setEditable(false);
-        featureName.setEnabled(false);
+        featureName.setEditable(true);
+        featureName.setEnabled(true);
 
         hotfixName.setText(branchName);
         hotfixName.setEditable(false);
@@ -97,7 +118,7 @@ public class GitflowOpenTaskPanel extends TaskDialogPanel implements ItemListene
         bugfixName.setEditable(false);
         bugfixName.setEnabled(false);
 
-        featureBaseBranch.setEnabled(false);
+        featureBaseBranch.setEnabled(true);
         hotfixBaseBranch.setEnabled(false);
         bugfixBaseBranch.setEnabled(false);
 
@@ -107,6 +128,7 @@ public class GitflowOpenTaskPanel extends TaskDialogPanel implements ItemListene
         startHotfixRadioButton.addItemListener(this);
         startBugfixRadioButton.addItemListener(this);
 
+        startFeatureRadioButton.setSelected(true);
     }
 
     @NotNull
